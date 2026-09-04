@@ -176,7 +176,9 @@ $('installApp').addEventListener('click',async()=>{
     $('installHelp').hidden=false;
   }
 });
-$('closeInstallHelp').addEventListener('click',()=>{$('installHelp').hidden=true;});
-$('installHelp').addEventListener('click',e=>{if(e.target===$('installHelp'))$('installHelp').hidden=true;});
+function closeInstallHelp(){ $('installHelp').hidden=true; }
+$('closeInstallHelp').addEventListener('click',closeInstallHelp);
+$('installHelp').addEventListener('click',e=>{if(e.target === $('installHelp')) closeInstallHelp();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape') closeInstallHelp();});
 
 if('serviceWorker' in navigator && (location.protocol==='https:'||location.hostname==='localhost')) navigator.serviceWorker.register('./sw.js').catch(()=>{});
