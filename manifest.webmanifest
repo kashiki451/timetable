@@ -4,7 +4,7 @@
   "start_url":"./",
   "scope":"./",
   "display":"standalone",
-  "orientation":"portrait",
+  "orientation":"portrait","prefer_related_applications":false,
   "background_color":"#f4f7fc",
   "theme_color":"#4169e1",
   "lang":"zh-CN",

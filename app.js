@@ -160,7 +160,13 @@ $('importData').addEventListener('change',async e=>{
   try{ const data=JSON.parse(await file.text()); const imported=validateCourses(data.courses||data); if(confirm(`将导入 ${imported.length} 条课程记录并覆盖当前课表，是否继续？`)){courses=imported;saveCourses();resetForm();render();} }
   catch(err){alert(`导入失败：${err.message}`)} finally{e.target.value='';}
 });
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstallPrompt=e;});
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstallPrompt=e; $('installApp').style.display='flex';});
+window.addEventListener('appinstalled',()=>{deferredInstallPrompt=null; $('installApp').textContent='已安装'; $('installApp').disabled=true;});
+(function initInstallButton(){
+  const btn=$('installApp');
+  btn.style.display='flex';
+  if(window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone===true){btn.textContent='已安装';btn.disabled=true;}
+})();
 $('installApp').addEventListener('click',async()=>{
   if(deferredInstallPrompt){
     deferredInstallPrompt.prompt();
