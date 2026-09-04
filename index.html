@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#4169e1">
+<meta name="description" content="2026-2027学年第一学期个人课表">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg">
+<title>我的课表 · 2026秋季</title>
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<main class="app-shell">
+<header class="topbar">
+  <div class="brand"><p class="eyebrow">2026 秋季学期 · 18 周</p><h1>我的课表</h1><p class="subline">2026-09-07 开始 · 全局周课表</p></div>
+  <div class="week-controls">
+    <button id="previousWeek" class="icon-button" aria-label="上一周">‹</button>
+    <div class="week-display"><strong id="weekTitle">第 1 周</strong><span id="dateRange"></span></div>
+    <button id="nextWeek" class="icon-button" aria-label="下一周">›</button>
+    <select id="weekSelect" aria-label="选择教学周"></select>
+    <button id="goCurrentWeek" class="secondary-button">本周</button>
+    <button id="installApp" class="primary-small" type="button">安装到手机</button>
+  </div>
+</header>
+<div id="termNotice" class="notice" hidden></div>
+<section class="workspace">
+  <div class="schedule-panel">
+    <div class="schedule-caption"><strong>周课表</strong><span>点击课程查看详情</span></div>
+    <div id="scheduleGrid" class="schedule-grid"></div>
+    <p id="emptyHint" class="empty-hint" hidden>这一周还没有课程。</p>
+  </div>
+  <aside class="editor-panel">
+    <div class="panel-heading"><div><p class="eyebrow">课程管理</p><h2 id="formTitle">添加课程</h2></div><button id="resetForm" class="text-button" type="button" hidden>取消编辑</button></div>
+    <form id="courseForm">
+      <input id="courseId" type="hidden">
+      <label>课程名称<input id="courseName" required maxlength="40"></label>
+      <div class="two-columns"><label>星期<select id="courseDay" required></select></label><label>颜色<input id="courseColor" type="color" value="#4f7cff"></label></div>
+      <div class="two-columns"><label>开始节次<select id="startSection" required></select></label><label>结束节次<select id="endSection" required></select></label></div>
+      <div class="two-columns"><label>起始周<input id="startWeek" required type="number" min="1" max="18" value="1"></label><label>结束周<input id="endWeek" required type="number" min="1" max="18" value="18"></label></div>
+      <label>上课周次<select id="weekType"><option value="all">每周</option><option value="odd">仅单周</option><option value="even">仅双周</option></select></label>
+      <label>地点<input id="courseLocation" maxlength="40"></label><label>教师<input id="courseTeacher" maxlength="30"></label><label>备注<input id="courseNote" maxlength="160"></label>
+      <button class="primary-button" type="submit">保存课程</button><button id="deleteCourse" class="delete-button" type="button" hidden>删除这门课程</button>
+    </form>
+    <div class="data-actions"><h3>数据</h3><div><button id="exportData" class="secondary-button" type="button">导出 JSON</button><label class="secondary-button import-label">导入 JSON<input id="importData" type="file" accept="application/json,.json"></label></div><button id="restoreCourses" class="danger-link" type="button">恢复当前课程数据</button></div>
+  </aside>
+</section>
+</main>
+<div id="installHelp" class="modal-backdrop" hidden><div class="install-modal"><button id="closeInstallHelp" class="modal-close" type="button">×</button><h2>安装到 Android</h2><p id="installHelpText">如果没有弹出系统安装窗口，请在 Chrome 右上角菜单中选择“安装应用”或“添加到主屏幕”。</p><ol><li>用 Android Chrome 打开本课表网页。</li><li>点击右上角 <b>⋮</b> 菜单。</li><li>选择“安装应用”或“添加到主屏幕”。</li><li>确认后，桌面会出现“我的课表”。</li></ol><p class="modal-tip">如果浏览器地址不是 HTTPS，PWA 通常无法安装。GitHub Pages 地址默认支持 HTTPS。</p></div></div>
+<script src="./app.js"></script>
+</body>
+</html>
