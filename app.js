@@ -173,12 +173,29 @@ $('installApp').addEventListener('click',async()=>{
     try{await deferredInstallPrompt.userChoice;}catch(_){ }
     deferredInstallPrompt=null;
   }else{
-    $('installHelp').hidden=false;
+    openInstallHelp();
   }
 });
-function closeInstallHelp(){ $('installHelp').hidden=true; }
-$('closeInstallHelp').addEventListener('click',closeInstallHelp);
-$('installHelp').addEventListener('click',e=>{if(e.target === $('installHelp')) closeInstallHelp();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape') closeInstallHelp();});
+function openInstallHelp(){
+  $('installHelp').hidden=false;
+  document.body.classList.add('modal-open');
+}
+function closeInstallHelp(){
+  $('installHelp').hidden=true;
+  document.body.classList.remove('modal-open');
+}
+function initInstallHelp(){
+  closeInstallHelp();
+  $('closeInstallHelp').addEventListener('click',closeInstallHelp);
+  $('dismissInstallHelp').addEventListener('click',closeInstallHelp);
+  $('installHelp').addEventListener('click',e=>{
+    if(e.target.closest('.install-modal')) return;
+    closeInstallHelp();
+  });
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape' && !$('installHelp').hidden) closeInstallHelp();
+  });
+}
+initInstallHelp();
 
 if('serviceWorker' in navigator && (location.protocol==='https:'||location.hostname==='localhost')) navigator.serviceWorker.register('./sw.js').catch(()=>{});

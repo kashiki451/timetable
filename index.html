@@ -46,7 +46,21 @@
   </aside>
 </section>
 </main>
-<div id="installHelp" class="modal-backdrop" hidden><div class="install-modal"><button id="closeInstallHelp" class="modal-close" type="button">×</button><h2>安装到 Android</h2><p id="installHelpText">如果没有弹出系统安装窗口，请在 Chrome 右上角菜单中选择“安装应用”或“添加到主屏幕”。</p><ol><li>用 Android Chrome 打开本课表网页。</li><li>点击右上角 <b>⋮</b> 菜单。</li><li>选择“安装应用”或“添加到主屏幕”。</li><li>确认后，桌面会出现“我的课表”。</li></ol><p class="modal-tip">如果浏览器地址不是 HTTPS，PWA 通常无法安装。GitHub Pages 地址默认支持 HTTPS。</p></div></div>
+<div id="installHelp" class="modal-backdrop" hidden>
+  <div class="install-modal" role="dialog" aria-modal="true" aria-labelledby="installHelpTitle">
+    <button id="closeInstallHelp" class="modal-close" type="button" aria-label="关闭">×</button>
+    <h2 id="installHelpTitle">安装到 Android</h2>
+    <p id="installHelpText">如果没有弹出系统安装窗口，请在 Chrome 右上角菜单中选择“安装应用”或“添加到主屏幕”。</p>
+    <ol>
+      <li>用 Android Chrome 打开本课表网页。</li>
+      <li>点击右上角 <b>⋮</b> 菜单。</li>
+      <li>选择“安装应用”或“添加到主屏幕”。</li>
+      <li>确认后，桌面会出现“我的课表”。</li>
+    </ol>
+    <p class="modal-tip">如果浏览器地址不是 HTTPS，PWA 通常无法安装。GitHub Pages 地址默认支持 HTTPS。</p>
+    <button id="dismissInstallHelp" class="modal-dismiss" type="button">知道了</button>
+  </div>
+</div>
 <script src="./app.js"></script>
 </body>
 </html>
